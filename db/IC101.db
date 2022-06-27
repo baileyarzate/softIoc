@@ -1,0 +1,144 @@
+record(stringin, "$(P)$(R)Version")
+{
+    field(DESC, "Read version number of sydor PBG monitor")
+    field(DTYP, "stream")
+    field(INP, "@sydor.proto getVersion $(PORT)")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+}
+
+
+record(stringout, "$(P)$(R)DebugCommand")
+{
+    field(DESC, "Enter debug commands")
+    field(DTYP, "stream")
+    field(OUT, "@sydor.proto debug($(P)$(R)DebugCommandResponse) $(PORT)")
+    field(VAL, "VR?")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+}
+
+
+record(stringin, "$(P)$(R)DebugCommandResponse")
+{
+    field(DESC, "Response from Debug command")
+}
+
+
+record(bo, "$(P)$(R)Polarity")
+{
+    field(DESC, "Device polarity")
+    field(DTYP, "stream")
+    field(OUT, "@sydor.proto setPolarity $(PORT)")
+    field(ZNAM, "Negative")
+    field(ONAM, "Positive")
+    field(VAL, "0")
+    field(PINI, "NO")
+    field(SCAN, "Passive")
+}
+
+
+record(ao, "$(P)$(R)Amplitude")
+{
+    field(DESC, "Device amplitued 0-100")
+    field(DTYP, "stream")
+    field(OUT, "@sydor.proto setAmplitude $(PORT)")
+    field(LOW, "0.0")
+    field(HIGH, "100.0")
+    field(LSV, "MAJOR")
+    field(HSV, "MAJOR")
+    field(VAL, "0.0")
+    field(PINI, "NO")
+    field(SCAN, "Passive")
+}
+
+
+record(ao, "$(P)$(R)PulseWidth")
+{
+    field(DESC, "Device pulse width in us")
+    field(DTYP, "stream")
+    field(OUT, "@sydor.proto setPulseWidth $(PORT)")
+    field(VAL, "0.0")
+    field(PINI, "NO")
+    field(SCAN, "Passive")
+}
+
+
+record(ao, "$(P)$(R)Frequency")
+{
+    field(DESC, "Device frequency between 30 and 31250 Hz")
+    field(DTYP, "stream")
+    field(OUT, "@sydor.proto setFrequencyDutyCycle($(P)$(R)Frequency, $(P)$(R)DutyCycle) $(PORT)")
+    field(LOW, "30.0")
+    field(HIGH, "31250.0")
+    field(LSV, "MAJOR")
+    field(HSV, "MAJOR")
+    field(VAL, "30.0")
+    field(PINI, "NO")
+    field(SCAN, "Passive")
+}
+
+
+record(ao, "$(P)$(R)DutyCycle")
+{
+    field(DESC, "Device duty cycle between 0.1 and 100")
+    field(DTYP, "stream")
+    field(OUT, "@sydor.proto setFrequencyDutyCycle($(P)$(R)Frequency, $(P)$(R)DutyCycle) $(PORT)")
+    field(LOW, "0.1")
+    field(HIGH, "100")
+    field(LSV, "MAJOR")
+    field(HSV, "MAJOR")
+    field(VAL, "1.0")
+    field(PINI, "NO")
+    field(SCAN, "Passive")
+}
+
+
+record(mbbo, "$(P)$(R)Mode")
+{
+    field(DESC, "Device mode")
+    field(DTYP, "stream")
+    field(ZRST, "Off")
+    field(ZRVL, "0")
+    field(ONST, "DC")
+    field(ONVL, "1")
+    field(TWST, "External Trigger")
+    field(TWVL, "2")
+    field(THST, "CW Pulses")
+    field(THVL, "3")
+    field(OUT, "@sydor.proto setMode $(PORT)")
+    field(VAL, "0")
+    field(PINI, "NO")
+    field(SCAN, "Passive")
+}
+
+
+record(stringout, "$(P)$(R)GetThermocouples")
+{
+    field(DESC, "PV for reading thermocouple values") 
+    field(DTYP, "stream")
+    field(VAL, "QT?")
+    field(PINI, "YES")
+    field(OUT, "@sydor.proto getThermocouples($(P)$(R)ThermocoupleW,$(P)$(R)ThermocoupleX,$(P)$(R)ThermocoupleY,$(P)$(R)ThermocoupleZ) $(PORT)") 
+    field(SCAN, "10 second")
+}
+
+
+record(stringin,"$(P)$(R)ThermocoupleW")
+{
+    field(DESC, "Cold Plate")
+}
+
+record(stringin, "$(P)$(R)ThermocoupleX"){
+    field(DESC, "Channel C PK102 Copper Block")
+}
+
+record(stringin, "$(P)$(R)ThermocoupleY"){
+    field(DESC, "Molybdenum Mask")
+}
+
+record(stringin, "$(P)$(R)ThermocoupleZ")
+{
+    field(DESC, "Channel A PK68 Copper Block")
+}
+

@@ -1,0 +1,8 @@
+include "/usr/lib/epics/dbd/base.dbd"
+include "/usr/lib/epics/dbd/stream.dbd"
+include "/usr/lib/epics/dbd/asyn.dbd"
+include "/usr/lib/epics/dbd/devIocStats.dbd"
+include "/usr/lib/epics/dbd/drvAsynIPPort.dbd"
+registrar(drvAsynIPPortRegisterCommands)
+registrar(drvAsynSerialPortRegisterCommands)
+registrar(vxi11RegisterCommands)

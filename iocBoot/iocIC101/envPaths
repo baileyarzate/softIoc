@@ -1,0 +1,3 @@
+epicsEnvSet("IOC","iocIC101")
+epicsEnvSet("TOP","/home/jarzate/IOCs")
+epicsEnvSet("EPICS_BASE","/usr/lib/epics")
